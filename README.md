@@ -1,13 +1,28 @@
 # Compression: Huffman encoding
 ## Intro
-In this repo I explore a basic approach for compression: Huffman coding. And test it with a smaller version of enwik[enwik9](http://mattmahoney.net/dc/enwik9.zip) from [Hutter Prize competition](http://prize.hutter1.net/). 
+In this repo I explore a basic approach for compression: Huffman coding. And test it with a smaller version of [enwik9](http://mattmahoney.net/dc/enwik9.zip) from [Hutter Prize competition](http://prize.hutter1.net/). 
 
 Disclaimer: This is not an attempt whatsoever to create a decent compressor, just exploration.
 
 ## Usage
 For encoding and decoding enwik5:
-```
+```python
 python main.py
+```
+Outputs:
+```
+Orig text: 
+ <mediawiki xmlns="http://www.mediawiki.org/xml/export-0.3/" xmlns:xsi="http://www.w3.org/2001/XMLSch ... utism and as such resist it, dubbed ''anti-cure'', and the many people caught in the middle of the t
+Decoded text 
+ <mediawiki xmlns="http://www.mediawiki.org/xml/export-0.3/" xmlns:xsi="http://www.w3.org/2001/XMLSch  ...  utism and as such resist it, dubbed ''anti-cure'', and the many people caught in the middle of the t
+Is text equal: True
+Size of orig text:  100.148 KB
+Size of encoded text:  61.032125 KB (488257 bits)
+Approx size of hufman dict: 3.712 KB
+Approx size of node dict: 8.775 KB
+Compression ratio (no encoding dict):  1.640906325971773
+Optimal entropy given the split 4.862219963642222
+Encoding entropy 4.882569999999999
 ```
 Run tests:
 ```
