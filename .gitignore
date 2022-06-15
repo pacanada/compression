@@ -1,0 +1,10 @@
+enwik8
+enwik5.gz
+enwik8.gz
+*.json
+*.pickle
+__pycache__
+.DS_Store
+.ipynb_checkpoints
+.pytest_cache
+.vs_code
