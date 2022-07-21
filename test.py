@@ -1,4 +1,4 @@
-from utils import get_frequency_dict, get_tree_hufman_and_encoded_bin, decode
+from utils import get_frequency_dict, get_tree_hufman_and_encoded_bin, decode, load_binary_as_string, save_binary
 import pytest
 
 @pytest.fixture
@@ -24,3 +24,13 @@ def test_example(huffman_dict_target, encoded_text_target):
 
         assert v == huffman_dict_target[k], f"The Huffman dict is constructed differently in {k}"
     assert encoded_text == encoded_text_target, "Encoding does not match"
+
+def test_save_load_binary():
+    test_1 = "01010010"
+    test_2 = "1111111"
+    test_3 = "010101010"
+    test_strings = [test_1,test_2, test_3]
+    for test_txt in test_strings:
+        save_binary(test_txt)
+        test_txt_compare = load_binary_as_string()
+        assert test_txt == test_txt_compare, f"{test_txt} != {test_txt_compare}"

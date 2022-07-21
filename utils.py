@@ -107,6 +107,35 @@ def get_encoding_entropy(hufman_dict, freq):
     l_w = np.array([len(hufman_dict[char])*w for (char, value), w in zip(freq, probs)])
     return l_w
 
+
+def save_binary(txt: str, bin_filename="byte.bin"):
+    """"""
+    # Add how many zeros we have to remove at the end of the second to last byte
+    num = len(txt)%8
+    bit_strings = [
+    txt[i:i + 8] if i!=len(txt)-1 else "0"*(8-len(txt[i:]))+txt[i:i + 8]
+    for i in range(0, len(txt), 8)]
+    
+    byte_list = [int(b, 2) for b in bit_strings]
+    byte_list.append(num)
+    with open(bin_filename, 'wb') as f:
+        f.write(bytearray(byte_list))
+
+def load_binary_as_string(bin_filename = "byte.bin"):
+    """"""
+    with open(bin_filename, 'rb') as f:
+        byte_stream = f.read() 
+    print(byte_stream)
+    num = int(byte_stream[-1])
+    if num==0:
+        bin_text = "{:08b}".format(int(byte_stream[:-1].hex(),16))
+    else:
+        bin_text = "{:08b}".format(int(byte_stream[:-2].hex(),16))
+        num = int(byte_stream[-1])
+        last_byte = "{:08b}".format(int(byte_stream[:-1].hex(),16))
+        bin_text.append(last_byte[num:])
+    return bin_text
+
 if __name__ == "__main__":
     test_text = "A_DEAD_DAD_CEDED_A_BAD_BABE_A_BEADED_ABACA_BED"
     # to construct the right hufman tree, it seems we need to add the previous node to the queue

@@ -12,6 +12,9 @@ def main():
     freq = get_frequency_dict(text)
     tree, huffman_dict, encoded_text = get_tree_hufman_and_encoded_bin(text, freq)
     # Decode is terribly slow
+    with open("encoded_text.txt", "w") as f:
+        f.write(encoded_text)
+    #exit(1)
     decoded_text = decode(encoded_text,tree)
 
     # Summary
